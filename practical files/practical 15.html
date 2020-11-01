@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        #container
+        {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            /* top: 100px;
+            right: 800px; */
+            justify-content: space-evenly;
+            width: 100%;
+            height: 70vh;
+         border: 0px solid;
+            top: 100px;
+            clear: both;
+            
+        }
+       
+        #bt1
+        {
+
+            width: 60px;
+            height: 30px;
+
+            /* margin-right:100px ; */
+            background-color:yellow;
+
+
+        }
+        #bt2
+        {
+
+            background-color:yellow;
+            width: 60px;
+            height: 30px;
+
+
+
+        }
+
+        #value
+        {
+            height: 30px;
+            background-color:grey;
+            color: yellow;
+            
+        }
+
+        h1
+        {
+            
+            color: white;
+            font-size: 50px;
+            text-align: center;
+        }
+       
+    </style>
+
+</head>
+
+<body style="background-color: grey;" >
+    
+    
+        <h1 id="top">COUNTER</h1>
+  
+
+    <div id="container">
+        
+        
+        <button id="bt1" onclick="neg()"><span style="font-size: 30px;  line-height: 30px;">-</span></button>
+         <!-- <div id="value"><h2 id="val">0</h2></div> -->
+         <!-- <input type="button" value="0" id="value"> -->
+         <p id="value" style="font-size: 50px;">0</p>
+         <button id="bt2" onclick="add()"><span style="font-size: 30px; line-height: 30px;">+</span></button>
+       
+
+    </div>
+
+
+    <script>
+        var negob=document.getElementById('bt1');
+         var x=0;
+        var ob=document.getElementById('value');
+        function add()
+        {
+            negob.disabled=false;
+             x=x+1;
+             ob.innerHTML=x;
+        }
+        function neg()
+        {
+            if(x==0)
+            {
+                negob.disabled=true;
+            }
+             
+            
+            if(x>0)
+            {
+                negob.disabled=false;
+             x=x-1;
+             ob.innerHTML=x;
+            }
+            //  if(x==2)
+            //  {
+            //      alert('good');
+            //  }
+        }
+
+
+
+    </script>
+</body>
+</html>
