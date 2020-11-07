@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 16</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ::selection
+        {
+            background-color: green;
+        }
+        body
+        {
+            background:linear-gradient(120deg ,skyblue,blue);
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+           
+
+        }
+        h1
+        {
+            position: relative;
+            text-align: center;
+            top: 50px;
+            font-size: 60px;
+            color: white;
+        }
+
+        .type
+        {
+            
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        input[type='text']
+        {
+            outline: none;
+            
+            height: 40px;
+            width: 20rem;
+            font-size: large;
+            
+        }
+       .type button
+        {
+            font-size: 20px;
+            background-color: white; 
+            color: blue;
+            border: none;
+            
+           padding: 0px 10px;
+            line-height:40px ;
+            cursor: pointer;
+        }
+
+        .type button:hover
+        {
+            background-color: aliceblue;
+        }
+
+        .todo-container
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .todo-list
+        {
+            width: 50%;   
+        }
+
+        .todo-list li{
+            list-style: none;
+            display: inline;
+            font-size: 25px;           
+            width: 200px;
+            flex: 1;
+        }
+        .todo-list button
+        {
+            font-size: 30px;
+        }
+        .todo
+        {
+            margin: 8px;
+            background-color: white;
+            display: flex;
+            justify-content:space-between;
+
+        }
+
+        .check-btn
+        {
+         background-color: green;   
+         color: white; 
+         padding: 0px 5px;
+         border: none;
+         outline: none;
+         cursor: pointer;
+        }
+        .delete-btn
+        {
+            background-color: crimson;
+            color: aliceblue;
+            padding: 0px 5px;
+            border: none;
+         outline: none;
+         cursor: pointer;
+        }
+
+        .check-btn:hover
+        {
+            background-color: rgb(96, 223, 96);
+        }
+        .delete-btn:hover
+        {
+            background-color: lightcoral;
+        }
+
+        .fa-check,.fa-trash
+        {
+            pointer-events: none;
+        }
+
+        .completed
+        {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Fullstack To-do List</h1>
+    <div class="type">
+        <input type="text" class="todo-input">
+        <button class="todo-btn"><i class="fa fa-plus-square" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- new List Container -->
+
+    <div class="todo-container">
+        <ul class="todo-list">
+
+ 
+
+
+        </ul>
+    </div> 
+
+   
+    <script>
+
+//selector
+var todoInput= document.querySelector('.todo-input');
+var todobtn= document.querySelector('.todo-btn');
+var todolist= document.querySelector('.todo-list');
+
+
+//Event Handlers || function generator
+ 
+todobtn.onclick=newlist;
+// checkbtn.onclick=blurItem;
+todolist.onclick=removeItem;
+
+
+
+
+//function definition
+function newlist()
+{
+  var newdiv = document.createElement('div');
+  newdiv.classList.add('todo'); 
+
+  var newli = document.createElement('li');
+  newli.classList.add('todo-item');
+  newli.innerHTML=todoInput.value;
+  newdiv.appendChild(newli);
+  
+  var checkbtn = document.createElement('button');
+  checkbtn.classList.add('check-btn');
+  checkbtn.innerHTML='<i class="fa fa-check"></i>';
+  newdiv.appendChild(checkbtn);
+
+  var deletebtn = document.createElement('button');
+  deletebtn.classList.add('delete-btn');
+  deletebtn.innerHTML="<i class='fa fa-trash'></i>";
+  newdiv.appendChild(deletebtn);
+ 
+  todolist.appendChild(newdiv);
+
+}
+
+function removeItem(e)
+{
+    var caught= e.target;
+    if(caught.classList[0]==="delete-btn")
+    {
+        var parent = caught.parentNode;
+        parent.remove();
+
+    }
+    if(caught.classList[0]==="check-btn")
+    {
+        var parent = caught.parentNode;
+        parent.classList.toggle("completed");
+
+    }
+
+//    todolist.removeChild(newdiv);
+    
+}
+
+
+    </script>
+
+</body>
+</html>

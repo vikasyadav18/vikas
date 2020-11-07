@@ -88,6 +88,10 @@
         var negob=document.getElementById('bt1');
          var x=0;
         var ob=document.getElementById('value');
+        if(x==0)
+            {
+                negob.disabled=true;
+            }
         function add()
         {
             negob.disabled=false;
@@ -105,13 +109,10 @@
             if(x>0)
             {
                 negob.disabled=false;
-             x=x-1;
-             ob.innerHTML=x;
+                x=x-1;
+                ob.innerHTML=x;
             }
-            //  if(x==2)
-            //  {
-            //      alert('good');
-            //  }
+            
         }
 
 
