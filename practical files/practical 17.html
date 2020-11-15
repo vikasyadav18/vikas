@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practical 17</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    
+    <style>
+        *{
+            padding: 0;margin: 0; box-sizing:border-box;
+
+        }
+        body
+        {
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            
+            background-position: center;
+            background-size: cover;
+
+              
+        }
+        time
+        {
+            font-size:8rem;
+            
+        }
+        h1,h2
+        {
+            margin-bottom: 1rem;
+            
+        }
+
+        h2
+        {
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        
+    </style>
+
+</head>
+<body>
+     
+    <time id="time"></time>
+    <h1 id="greeting">Good Morning</h1>
+    <h2 id="name" contenteditable="true">Vikas Yadav</h2>
+    <h3 id="date"></h3>
+    
+    
+    <script>
+
+        //selector
+        const time=document.getElementById("time");
+        const greeting=document.getElementById("greeting");
+        const name=document.getElementById("name");
+        const date=document.getElementById("date");
+
+        //Event Listener
+        name.addEventListener("keypress",setName);
+        name.addEventListener("blur",setName);
+
+
+        //function definition
+        function showtime()
+       {
+            let today=new Date();
+            //console.log("date details--"+today);
+            let hour=today.getHours();
+            let min=today.getMinutes();
+            let sec=today.getSeconds();
+            
+            let todaydate=today.toDateString();
+            
+            //am Pm
+            const amPm= hour>12 ? 'PM' : 'AM';
+
+            // 12 hrs format
+            hour=hour%12 || 12;
+            
+            //output
+            time.innerHTML=`${addZero(hour)}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)} ${amPm}`;    // `${variable name} ` = tilt notation(makes concatination without + sign)
+
+            date.innerHTML=todaydate;
+           
+            setTimeout(showtime,1000);
+          
+
+       }
+
+
+      function addZero(n)
+      {
+        return ((parseInt(n,10)<10 ? '0' : '')+n);
+
+      }
+
+      function setGreeting()
+      {
+            let today=new Date();
+            let hour=20;//today.getHours(); //14
+            if(hour<12)
+            {
+                document.body.style.backgroundImage='url("picture/morning.jpg")';
+                greeting.innerHTML="Good Morning";
+
+            }
+            else if(hour<18)
+            {
+                document.body.style.backgroundImage='url("picture/afternoon.jpg")';
+                greeting.innerHTML="Good Afternoon";
+            }
+
+           
+
+            else
+            {
+                document.body.style.backgroundImage='url("picture/night.jpg")';
+                greeting.innerHTML="Good Evening";
+                document.body.style.color="white";
+            }
+
+            setInterval(setGreeting,1000);
+      }
+
+      function setName(e)
+            {
+                if(e.type==="keypress")
+                {
+                    if(e.keyCode==13)
+                    {
+                        localStorage.setItem('myData',e.target.innerHTML); 
+                        name.blur();
+                    }
+                }
+                else
+                {
+                   localStorage.setItem('myData',e.target.innerHTML); 
+                }
+
+            }
+
+
+
+            function getName()
+            {
+                if(localStorage.getItem('myData')===null)
+                {
+                    name.innerHTML="[ENTER NAME]";
+
+                }
+                else 
+                {
+                    name.innerHTML=localStorage.getItem('myData'); 
+                }
+            }
+
+           
+
+        //function call
+            showtime();
+            setGreeting();
+            getName();
+
+
+
+
+        
+
+
+    </script>
+
+</body>
+</html>
