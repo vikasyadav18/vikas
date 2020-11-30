@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        *
+        {
+            padding: 0;margin: 0;box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body
+        {
+            background-color: darkslateblue;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .container
+        {
+           
+            position: absolute;
+            background-color: white;
+            width: 400px;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .header
+        {
+            background-color: aliceblue;
+        }
+        .header h2
+        {
+            text-align: center;
+            padding: 20px;
+        }
+        .form
+        {
+            padding: 20px 30px;
+        }
+        .form-control
+        {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .form-control label
+        {
+            display: block;
+        }
+
+        .form-control input
+        {
+            display: block;
+            width: 100%;
+            
+            padding: 10px;
+            margin-top: 10px;
+            outline: none;
+            border-radius: 5px;
+            border: 2px solid #f0f0f0;
+
+        }
+        .form-control i
+        {
+           
+           position: absolute;
+           right: 60px;
+           
+            
+            visibility: hidden;
+        }
+        
+        .form-control small
+        {
+            position: absolute;
+            left: 55px;
+            visibility: hidden;
+        }
+        .form button
+        {
+            display: block;
+            width: 100%;
+            background-color: blueviolet;
+            border-radius: 5px;
+            color: white;
+            padding: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .form-control.success input
+        {
+            border-color: rgb(10, 190, 10);
+        }
+        .form-control.error input
+        {
+            border-color: red;
+        }
+        .form-control.success .fa-check-circle
+        {
+            color: rgb(10, 190, 10);
+            visibility: visible;
+
+        }
+        .form-control.error .fa-exclamation-circle
+        {
+            visibility: visible;
+            color: red;
+        }
+        .form-control.error small
+        {
+            visibility: visible;
+            color: red;
+            margin-top: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+            <form class="form" id="form">
+               <div class="form-control">
+                    <label for="username">User name</label>
+                    <input type="text" id="username" placeholder="Enter User Name">
+                    <i class="fa fa-check-circle"></i> 
+                    <i class="fa fa-exclamation-circle"></i> 
+                    <small>Error Message</small>
+                </div>
+                
+               <div class="form-control">
+                    <label for="email">Email-Id</label>
+                    <input type="text" id="email" placeholder="Enter Email-Id">
+                    <i class="fa fa-check-circle"></i> 
+                    <i class="fa fa-exclamation-circle"></i> 
+                    <small>Error Message</small>
+                </div>
+                
+               <div class="form-control">
+                    <label for="password1">Enter password</label>
+                    <input type="password" id="password1" placeholder="password">
+                    <i class="fa fa-check-circle"></i> 
+                    <i class="fa fa-exclamation-circle"></i> 
+                    <small>Error Message</small>
+                </div>
+                
+               <div class="form-control">
+                    <label for="password2">Re-Enter Passward</label>
+                    <input type="password" id="password2" placeholder="confirm password">
+                    <i class="fa fa-check-circle"></i> 
+                    <i class="fa fa-exclamation-circle"></i> 
+                    <small>Error Message</small>
+                </div>
+                <button type="submit" >submit</button>
+            </form>
+      
+
+    </div>
+   
+   
+   
+   
+   
+   <script>
+
+//selector
+const form=document.getElementById('form');
+const username=document.getElementById('username');
+const email=document.getElementById('email');
+const password1=document.getElementById('password1');
+const password2=document.getElementById('password2');
+
+
+//event handler
+addEventListener('submit',function(e){
+e.preventDefault();         //data will not submit to server
+checkInput();
+
+});
+
+//fuction
+
+function checkInput()
+{
+    const usernameValue=username.value.trim();
+    const emailValue=email.value.trim();
+    const password1Value=password1.value.trim();
+    const password2Value=password2.value.trim();
+    
+// for user name
+    
+    if(usernameValue==='')
+    {
+       showError(username,"User name can't be blank"); 
+    }
+    else
+    {
+       showSuccess(username);
+    }
+
+//for email
+     
+    if(emailValue==='')
+    {
+       showError(email,"Email Id can't be blank"); 
+    }
+    else if(!isEmailValid(emailValue))
+    {
+       showError(email,"email is not valid");
+    }
+    else
+    {
+        showSuccess(email);
+    }
+
+//for password 1
+
+    if(password1Value==='')
+    {
+       showError(password1,"password can't be blank"); 
+    }
+    else
+    {
+       showSuccess(password1);
+    }
+    
+//for password 2
+    if(password2Value==='')
+    {
+       showError(password2,"please re-enter passward here"); 
+    }
+    
+    else if(password1Value != password2Value)
+    {
+       showError(password2,"not matched"); 
+    }
+    else
+    {
+       showSuccess(password2);
+    }
+}
+
+
+function showError(input,msg)
+{
+    const parent=input.parentNode;
+    console.log(parent);
+    parent.className="form-control error";
+    const small=parent.querySelector('small');
+    small.innerHTML=msg;
+
+}
+
+function showSuccess(input)
+{
+    const parent=input.parentNode;
+    parent.className="form-control success";
+}
+
+function isEmailValid(emailValue)
+{
+    return /^([a-zA-Z0-9_\-]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,3})$/.test(emailValue);
+}
+
+    </script>
+</body>
+</html>
