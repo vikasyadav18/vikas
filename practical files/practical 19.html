@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+*
+{
+    margin: 0;padding: 0;box-sizing: border-box;
+}
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    background-color: darkgray;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container
+{
+    width: 360px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.container form
+{
+    width: 280px;
+    position: absolute;
+    left: 40px;
+    top: 80px;
+transition: .5s;
+
+}
+form h3
+{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #777;
+}
+form input
+{
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #777;
+    background: transparent;
+}
+
+.btn-box
+{
+    margin: 30px auto;
+    text-align: center;
+   
+}
+form button
+{
+    width: 120px;
+    height: 35px;
+    background-color: red;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+#form2
+{
+    left: 450px;
+}
+#form3
+{
+    left: -450px;
+}
+.step-row
+{
+    width: 360px;
+    height: 40px;
+    box-shadow: 0px -1px 5px -1px black;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.step-col
+{
+    width: 120px;
+    text-align: center;
+    z-index: 1;
+    
+}
+#progress
+{
+    transition: .5s;
+    width: 120px;
+    height: 100%;
+    position: absolute;
+    background-color: red;
+
+}
+#progress::after
+{
+    content: '';
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    right: -20px;
+    border-left: 20px solid red;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form id="form1">
+            <h3>Create Account</h3>
+            <input type="text" placeholder="Enter Email">
+            <input type="password" placeholder="Enter passward">
+            <input type="password" placeholder="confirm passward">
+            <div class="btn-box">
+                <button type="button" id="next1">Next</button>
+            </div>
+        </form>
+
+
+        <form id="form2">
+            <h3>Social Links</h3>
+            <input type="text" placeholder="Linkedin">
+            <input type="text" placeholder="Github">
+            <input type="text" placeholder="Facebook">
+            <div class="btn-box">
+                <button type="button" id="back1">Back</button>
+                <button type="button" id="next2">Next</button>
+            </div>
+        </form>
+
+        <form id="form3">
+            <h3>Personal Information</h3>
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <input type="number" placeholder="mobile no.">
+            <div class="btn-box">
+                <button type="button" id="back2">Back</button>
+                <button type="button">Submit</button>
+            </div>
+        </form>
+        <div class="step-row">
+            <div id="progress"></div>
+            <div class="step-col"><small>step-1</small></div>
+            <div class="step-col"><small>step-2</small></div>
+            <div class="step-col"><small>step-3</small></div>
+        </div>
+    </div>
+
+
+<script>
+//  selector
+const form1=document.getElementById('form1');
+const form2=document.getElementById('form2');
+const form3=document.getElementById('form3');
+
+const next1=document.getElementById('next1');
+const next2=document.getElementById('next2');
+const back1=document.getElementById('back1');
+const back2=document.getElementById('back2');
+const progress=document.getElementById('progress');
+
+// event handler
+next1.onclick=function()
+{
+    form1.style.left="-450px";
+    form2.style.left="40px";
+    progress.style.width="240px";
+}
+back1.onclick=function()
+{
+    form1.style.left="40px";
+    form2.style.left="450px";
+    progress.style.width="120px";
+}
+next2.onclick=function()
+{
+    form2.style.left="-450px";
+    form3.style.left="40px";
+    progress.style.width="360px";
+}
+back2.onclick=function()
+{
+    form2.style.left="-0px";
+    form3.style.left="450px";
+    progress.style.width="240px";
+}
+</script>
+
+</body>
+</html>
