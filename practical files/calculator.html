@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body
+        {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+
+        .container
+        {
+            border: 1px dotted blue;
+            height: 300px;
+            width: 500px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+            
+        }
+        input
+        {
+            margin-bottom: 15px;
+            width:90%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(89, 218, 14, 0.205);
+            border: none;
+            outline: none;
+            }
+            #ad ,#su,#di,#mu,#mo
+        {           
+            
+            border-radius: 5px;
+            background-color: aquamarine;
+            color: rgb(69, 8, 238);
+            padding: 10px 25px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CALCULATOR</h1>
+        <input type="number" id="value1" value="">
+        <input type="number" id="value2" value="">
+<div class="operator">
+        <button class="operator" id="ad" onclick="add()"> + </button>
+        <button class="operator" id="su" onclick="subtract()"> - </button>
+        <button class="operator" id="di" onclick="divide()"> / </button>
+        <button class="operator" id="mu" onclick="multiply()"> * </button>
+        <button class="operator" id="mo" onclick="modulus()"> % </button>
+        
+    </div>  
+    <button class="refresh">clear</button>
+   <p ><blockquote id="result">[Result ]</blockquote> </p>
+    </div>
+
+
+<script>
+  
+// <!-- Selector -->
+var value1=document.getElementById('value1');
+var value2=document.getElementById('value2');
+
+var result=document.getElementById('result');
+
+// var add1=document.getElementById('add1');
+// var subtract1=document.getElementById('subtract1');
+// var divide1=document.getElementById('divide1');
+// var multiply1=document.getElementById('multiply1');
+// var modulus1=document.getElementById('modulus1');
+
+function add()
+{
+    var x=parseInt(value1.value);
+    var y=parseInt(value2.value);
+    
+    var z=x+y;
+    result.innerHTML=z;
+}
+function subtract()
+{
+    var x=parseInt(value1.value);
+    var y=parseInt(value2.value);
+    
+    var z=x-y;
+    result.innerHTML=z;
+}
+function divide()
+{
+    var x=parseInt(value1.value);
+    var y=parseInt(value2.value);
+    
+    var z=x/y;
+    result.innerHTML=z;
+}
+function multiply()
+{
+    var x=parseInt(value1.value);
+    var y=parseInt(value2.value);
+    
+    var z=x*y;
+    result.innerHTML=z;
+}
+
+function modulus()
+{
+    var x=parseInt(value1.value);
+    var y=parseInt(value2.value);
+    
+    var z=x%y;
+    result.innerHTML=z;
+}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
